@@ -1,4 +1,4 @@
-﻿#include "ThuVien.h";
+﻿#include "ThuVien.h"
 
 
 void nhapThanhVien(ThanhVien& thanhvien) {
@@ -13,7 +13,9 @@ void nhapThanhVien(ThanhVien& thanhvien) {
     cout << "Nhap que quan: ";
     cin.getline(thanhvien.queQuan, 30);
     cout << "Nhap gioi tinh(0 / 1) : ";
-    cin >> thanhvien.gioiTinh;
+    int gt;
+    cin >> gt;
+    gt ? thanhvien.gioiTinh = 1 : thanhvien.gioiTinh = 0;
     cin.ignore();
 }
 void xuatThanhVien(ThanhVien thanhvien) {
@@ -36,9 +38,12 @@ void nhapHoKhau(HoKhau& hoKhau) {
     }
 }
 void xuatHoKhau(HoKhau hoKhau) {
-    cout << "\nThong tin : " << hoKhau.info << endl;
+    cout << "\nThong tin Ho Khau  : " << hoKhau.info << endl;
+    cout << "----------------------------------------------------" << endl;
     for (int i = 0; i < hoKhau.n; i++) {
             xuatThanhVien(hoKhau.ds[i]);
+            cout << "------" << endl;
+            
     }
 }
 
@@ -54,6 +59,7 @@ void nhapDSHoKhau(DSHoKhau& dsHoKhau) {
 void xuatDSHoKhau(DSHoKhau dsHoKhau) {
     for (int i = 0; i < dsHoKhau.n; i++) {
         xuatHoKhau(dsHoKhau.ds[i]);
+        
     }
 }
 
@@ -119,6 +125,7 @@ void themHoKhauMoi(DSHoKhau& dsHoKhau) {
 }
 
 void xoaThanhVien(DSHoKhau& dsHoKhau) {
+    
     int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
@@ -136,6 +143,7 @@ void xoaThanhVien(DSHoKhau& dsHoKhau) {
     }
 }
 void xoaHoKhau(DSHoKhau& dsHoKhau) {
+   
     int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;

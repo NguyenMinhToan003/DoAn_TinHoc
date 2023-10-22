@@ -1,5 +1,4 @@
-#include "ThuVien.h";
-
+#include "ThuVien.h"
 
 
 int main() {
@@ -22,7 +21,7 @@ int main() {
         cout << "\nNhap Lua Chon : ";
         cin >> option;
         system("cls");
-        cout << "\n-------------------------------------------------------------------------------------------------------------------------------------";
+       
         if (option == 1) nhapPhuong(phuong);
         else if (option == 2)xuatPhuong(phuong);
         else if (option == 3) nhapTTPhuong(phuong);
