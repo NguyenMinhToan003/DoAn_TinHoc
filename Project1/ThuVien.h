@@ -1,6 +1,10 @@
-#pragma once
-#pragma once
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+
 
 const int MAX = 50;
 using namespace std;
@@ -50,3 +54,12 @@ void themHoKhauMoi(DSHoKhau& dsHoKhau);
 
 void xoaThanhVien(DSHoKhau& dsHoKhau);
 void xoaHoKhau(DSHoKhau& dsHoKhau);
+
+
+
+// file 
+
+bool xuatFile(Phuong& phuong);
+bool docFile();
+
+//

@@ -17,7 +17,10 @@ int main() {
         cout << "\n7.Them Thanh Vien.";
         cout << "\n8.Xoa Thanh Vien. ";
         cout << "\n9.Xoa Ho Khau.";
+        cout << "\n10.Ghi File.";
+        cout << "\n11.Doc File. ";
         cout << "\n0.Dung Chuong Trinh.";
+        
         cout << "\nNhap Lua Chon : ";
         cin >> option;
         system("cls");
@@ -31,6 +34,8 @@ int main() {
         else if (option == 7) themThanhVien(phuong.dsHoKhau);
         else if (option == 8) xoaThanhVien(phuong.dsHoKhau);
         else if (option == 9) xoaHoKhau(phuong.dsHoKhau);
+        else if (option == 10) xuatFile(phuong);
+        else if (option == 11) docFile();
         else if (option == 0) break;
 
 

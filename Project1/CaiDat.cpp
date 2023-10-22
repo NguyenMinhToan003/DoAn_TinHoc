@@ -2,9 +2,6 @@
 
 
 void nhapThanhVien(ThanhVien& thanhvien) {
-    cout << "\nNhap id : ";
-    cin >> thanhvien.id;
-    cin.ignore();
     cout << "\nNhap ho va ten: ";
     cin.getline(thanhvien.hoTen, 30);
     cout << "Nhap tuoi: ";
@@ -19,13 +16,12 @@ void nhapThanhVien(ThanhVien& thanhvien) {
     cin.ignore();
 }
 void xuatThanhVien(ThanhVien thanhvien) {
-    cout << "id: " << thanhvien.id << endl;
-	cout << "Ho va ten: " << thanhvien.hoTen << endl;
-	cout << "Nam sinh: " << thanhvien.namSinh<<endl;
-	cout << "Que quan: " << thanhvien.queQuan << endl;
-	cout << "Gioi tinh: " << (thanhvien.gioiTinh ? "Nam" : "Nu") << endl;
+    cout << left << setw(20) << thanhvien.id;
+    cout << left << setw(50) << thanhvien.hoTen;
+    cout << left << setw(25) << thanhvien.namSinh;
+    cout << left << setw(20) << (thanhvien.gioiTinh ? "Nam" : "Nu");
+    cout << left << thanhvien.queQuan << endl;
 }
-
 void nhapHoKhau(HoKhau& hoKhau) {
     cout << "\nNhap so luong thanh vien : ";
     cin >> hoKhau.n;
@@ -33,16 +29,15 @@ void nhapHoKhau(HoKhau& hoKhau) {
     cin.ignore();
     cin.getline(hoKhau.info, 20);
     for (int i = 0; i < hoKhau.n; i++) {
+        hoKhau.ds[i].id = i;
         cout << "\nNhap Thanh Vien thu " << i + 1 << endl;
         nhapThanhVien(hoKhau.ds[i]);
     }
 }
 void xuatHoKhau(HoKhau hoKhau) {
-    cout << "\nThong tin Ho Khau  : " << hoKhau.info << endl;
-    cout << "----------------------------------------------------" << endl;
     for (int i = 0; i < hoKhau.n; i++) {
+            cout << "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
             xuatThanhVien(hoKhau.ds[i]);
-            cout << "------" << endl;
             
     }
 }
@@ -57,6 +52,7 @@ void nhapDSHoKhau(DSHoKhau& dsHoKhau) {
     }
 }
 void xuatDSHoKhau(DSHoKhau dsHoKhau) {
+    cout <<left << setw(20) << "id" <<left << setw(50) << "Ho va Ten" << left << setw(25) <<"Gioi Tinh"  <<left << setw(20) << "Nam Sinh" <<left << "Que Quan " << endl;
     for (int i = 0; i < dsHoKhau.n; i++) {
         xuatHoKhau(dsHoKhau.ds[i]);
         
@@ -155,3 +151,57 @@ void xoaHoKhau(DSHoKhau& dsHoKhau) {
     
     }
 }
+
+
+bool xuatFile(Phuong&  phuong){
+    char tenFile[30];
+    cout << "\nNhap Ten File muon luu : ";
+    cin.ignore();
+    cin.getline(tenFile, 30);
+    ofstream file(tenFile);
+    if(file.is_open()){
+        file << "\n\t\t\t\t\t\t\tQUAN LY DAN CU CUA PHUONG " << endl;
+        file << "Thong tin phuong : " << phuong.info << endl;
+        file << "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
+        file << left << setw(20) << "id" << left << setw(50) << "Ho va Ten" << left << setw(25) << "Gioi Tinh" << left << setw(20) << "Nam Sinh" << left << "Que Quan " << endl;
+        for (int i = 0; i < phuong.dsHoKhau.n; i++) {
+            file<< "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
+            for (int j = 0; j < phuong.dsHoKhau.ds[i].n; j++) {
+                file << left << setw(20) << phuong.dsHoKhau.ds[i].ds[j].id;
+                file << left << setw(50) << phuong.dsHoKhau.ds[i].ds[j].hoTen;
+                file << left << setw(25) << phuong.dsHoKhau.ds[i].ds[j].namSinh;
+                file << left << setw(20) << (phuong.dsHoKhau.ds[i].ds[j].gioiTinh ? "Nam" : "Nu");
+                file << left << phuong.dsHoKhau.ds[i].ds[j].queQuan << endl;
+            }
+        }
+        file.close();
+       cout << "Ghi thanh cong vao file: " << tenFile << endl;
+       return 1;
+    }
+    else {
+     cerr << "Khong the mo file: " << tenFile << endl;
+     return 0;
+    }
+}
+
+bool docFile() {
+    char tenFile[30];
+    cout << "\nNhap Ten file muon doc : ";
+    cin.ignore();
+    cin.getline(tenFile,30);
+    std::ifstream file(tenFile);
+    if (file.is_open()) {
+       string duLieu;
+        while (getline(file, duLieu)) {
+           cout << duLieu <<endl;
+        }
+        file.close();
+       cout << "Doc thanh cong tu file: " << tenFile <<endl;
+        return true;
+    }
+    else {
+       cerr << "Khong the mo file: " << tenFile << endl;
+        return false;
+    }
+}
+
