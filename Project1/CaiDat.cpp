@@ -16,11 +16,11 @@ void nhapThanhVien(ThanhVien& thanhvien) {
     cin.ignore();
 }
 void xuatThanhVien(ThanhVien thanhvien) {
-    cout << left << setw(20) << thanhvien.id;
-    cout << left << setw(50) << thanhvien.hoTen;
-    cout << left << setw(25) << thanhvien.namSinh;
-    cout << left << setw(20) << (thanhvien.gioiTinh ? "Nam" : "Nu");
-    cout << left << thanhvien.queQuan << endl;
+    cout << "|" << left << setw(15) << thanhvien.id;
+    cout << "|" << left << setw(40) << thanhvien.hoTen;
+    cout << "|" << left << setw(25)<< thanhvien.namSinh;
+    cout << "|" << left << setw(20) << (thanhvien.gioiTinh ? "Nam" : "Nu");
+    cout << "|" << left << thanhvien.queQuan;
 }
 void nhapHoKhau(HoKhau& hoKhau) {
     cout << "\nNhap so luong thanh vien : ";
@@ -36,7 +36,7 @@ void nhapHoKhau(HoKhau& hoKhau) {
 }
 void xuatHoKhau(HoKhau hoKhau) {
     for (int i = 0; i < hoKhau.n; i++) {
-            cout << "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
+            cout << "\n-------------------------------------------------------------------------------------------------------------------------------------" ;
             xuatThanhVien(hoKhau.ds[i]);
             
     }
@@ -52,7 +52,7 @@ void nhapDSHoKhau(DSHoKhau& dsHoKhau) {
     }
 }
 void xuatDSHoKhau(DSHoKhau dsHoKhau) {
-    cout <<left << setw(20) << "id" <<left << setw(50) << "Ho va Ten" << left << setw(25) <<"Gioi Tinh"  <<left << setw(20) << "Nam Sinh" <<left << "Que Quan " << endl;
+    cout << left << setw(15) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
     for (int i = 0; i < dsHoKhau.n; i++) {
         xuatHoKhau(dsHoKhau.ds[i]);
         
@@ -101,6 +101,17 @@ int timHoKhau_chiSo(DSHoKhau& dsHoKhau) {
     return -1;
 }
 
+void hienThiThongTinHKTimKiem(DSHoKhau dsHoKhau) {
+    int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
+    if (chiSoHoKhau == -1)
+        cout << "Ho Khau Khong ton tai !" << endl;
+    else {
+        cout << left << setw(15) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
+        xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
+       
+    }
+    
+}
 
 
 
@@ -110,6 +121,7 @@ void themThanhVien(DSHoKhau& dsHoKhau) {
     if (chiSoHoKhau == -1)
         cout << "Ho Khau Khong ton tai !" << endl;
     else {
+        cout << left << setw(15) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
         xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
         nhapThanhVien(dsHoKhau.ds[chiSoHoKhau].ds[dsHoKhau.ds[chiSoHoKhau].n]);
         dsHoKhau.ds[chiSoHoKhau].n++;
@@ -131,6 +143,8 @@ void xoaThanhVien(DSHoKhau& dsHoKhau) {
         if (chiSoThanhVien == -1)
             cout << "Thanh Vien Khong ton tai !" << endl;
         else {
+            cout << left << setw(20) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
+            xuatThanhVien(dsHoKhau.ds[chiSoHoKhau].ds[chiSoThanhVien]);
             for (int i = chiSoThanhVien; i < soLuongThanhVien; i++) {
                 dsHoKhau.ds[chiSoHoKhau].ds[i] = dsHoKhau.ds[chiSoHoKhau].ds[i + 1];
             }
@@ -144,6 +158,8 @@ void xoaHoKhau(DSHoKhau& dsHoKhau) {
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
+        cout << left << setw(15) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
+        xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
         for (int i = chiSoHoKhau; i < dsHoKhau.n; i++) {
             dsHoKhau.ds[i] = dsHoKhau.ds[i + 1];
         }
@@ -163,12 +179,12 @@ bool xuatFile(Phuong&  phuong){
         file << "\n\t\t\t\t\t\t\tQUAN LY DAN CU CUA PHUONG " << endl;
         file << "Thong tin phuong : " << phuong.info << endl;
         file << "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
-        file << left << setw(20) << "id" << left << setw(50) << "Ho va Ten" << left << setw(25) << "Gioi Tinh" << left << setw(20) << "Nam Sinh" << left << "Que Quan " << endl;
+        file << left << setw(15) << "id" << left << setw(50) << "Ho va Ten" << left << setw(25) << "Gioi Tinh" << left << setw(20) << "Nam Sinh" << left << "Que Quan " << endl;
         for (int i = 0; i < phuong.dsHoKhau.n; i++) {
             file<< "\n-------------------------------------------------------------------------------------------------------------------------------------" << endl;
             for (int j = 0; j < phuong.dsHoKhau.ds[i].n; j++) {
                 file << left << setw(20) << phuong.dsHoKhau.ds[i].ds[j].id;
-                file << left << setw(50) << phuong.dsHoKhau.ds[i].ds[j].hoTen;
+                file << left << setw(40) << phuong.dsHoKhau.ds[i].ds[j].hoTen;
                 file << left << setw(25) << phuong.dsHoKhau.ds[i].ds[j].namSinh;
                 file << left << setw(20) << (phuong.dsHoKhau.ds[i].ds[j].gioiTinh ? "Nam" : "Nu");
                 file << left << phuong.dsHoKhau.ds[i].ds[j].queQuan << endl;

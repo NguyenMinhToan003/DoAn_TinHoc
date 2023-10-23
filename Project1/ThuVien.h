@@ -55,6 +55,7 @@ void themHoKhauMoi(DSHoKhau& dsHoKhau);
 void xoaThanhVien(DSHoKhau& dsHoKhau);
 void xoaHoKhau(DSHoKhau& dsHoKhau);
 
+void hienThiThongTinHKTimKiem(DSHoKhau dsHoKhau);
 
 
 // file 
