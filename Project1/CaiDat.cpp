@@ -111,10 +111,8 @@ int timHoKhau_chiSo(DSHoKhau& dsHoKhau) {
     return -1;
 }
 
-
-
-void themThanhVien(DSHoKhau& dsHoKhau) {
-    int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
+void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau) {
+    
     if (chiSoHoKhau == -1)
         cout << "Ho Khau Khong ton tai !" << endl;
     else {
@@ -134,13 +132,14 @@ void themHoKhauMoi(DSHoKhau& dsHoKhau) {
     dsHoKhau.n++;
 }
 
-void xoaThanhVien(DSHoKhau& dsHoKhau) {
+void xoaThanhVien(DSHoKhau& dsHoKhau,int chiSoHoKhau, int chiSoThanhVien) {
     
-    int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
+    
+
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
-        int chiSoThanhVien = timThanhVien_chiSo(dsHoKhau.ds[chiSoHoKhau]);
+        
         int soLuongThanhVien = dsHoKhau.ds[chiSoHoKhau].n;
         if (chiSoThanhVien == -1)
             cout << "Thanh Vien Khong ton tai !" << endl;
@@ -153,17 +152,20 @@ void xoaThanhVien(DSHoKhau& dsHoKhau) {
                 dsHoKhau.ds[chiSoHoKhau].ds[i] = dsHoKhau.ds[chiSoHoKhau].ds[i + 1];
             }
             dsHoKhau.ds[chiSoHoKhau].n--;
+            if (dsHoKhau.ds[chiSoHoKhau].n == 0) {
+                xoaHoKhau(dsHoKhau, chiSoHoKhau);
+                cout << "\nHet Thanh Vien Nen Xoa Ho Khau ";
+            }
         }
     }
 }
-void xoaHoKhau(DSHoKhau& dsHoKhau) {
+void xoaHoKhau(DSHoKhau& dsHoKhau,int chiSoHoKhau) {
    
-    int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);
+    /*int chiSoHoKhau = timHoKhau_chiSo(dsHoKhau);*/
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
-        cout << left << setw(15) << "|id" << left << setw(40) << "|Ho va Ten" << left << setw(25) << "|Gioi Tinh" << left << setw(20) << "|Nam Sinh" << left << "|Que Quan ";
-        xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
+
         for (int i = chiSoHoKhau; i < dsHoKhau.n; i++) {
             dsHoKhau.ds[i] = dsHoKhau.ds[i + 1];
         }

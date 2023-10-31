@@ -51,13 +51,12 @@ void xuatTTPhuong(Phuong phuong);
 int timThanhVien_chiSo(HoKhau& hoKhau);
 int timHoKhau_chiSo(DSHoKhau& dsHoKhau);
 
-void themThanhVien(DSHoKhau& dsHoKhau);
+void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKha);
 void themHoKhauMoi(DSHoKhau& dsHoKhau);
 
-void xoaThanhVien(DSHoKhau& dsHoKhau);
-void xoaHoKhau(DSHoKhau& dsHoKhau);
+void xoaThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau, int chiSoThanhVien);
+void xoaHoKhau(DSHoKhau& dsHoKhau, int chiSoHoKhau);
 
-void hienThiThongTinHKTimKiem(DSHoKhau dsHoKhau);
 
 
 

@@ -5,7 +5,8 @@ int main() {
    
     Phuong phuong;
     int option = 1;
-   
+    
+
 
     while (option) {
         cout << "\n1.Tao Phuong. ";
@@ -23,10 +24,14 @@ int main() {
         cin >> option;
         system("cls");
 
-        if (option == 1) nhapPhuong(phuong);
-        else if (option == 2)xuatPhuong(phuong);
-        else if (option == 3) nhapTTPhuong(phuong);
-        else if (option == 4) xuatTTPhuong(phuong);
+        if (option == 1) 
+            nhapPhuong(phuong);
+        else if (option == 2)
+            xuatPhuong(phuong);
+        else if (option == 3) 
+            nhapTTPhuong(phuong);
+        else if (option == 4) 
+            xuatTTPhuong(phuong);
         else if (option == 5) {
             int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
             if (chiSoHoKhau == -1)
@@ -39,10 +44,34 @@ int main() {
 
             }
         }
-        else if (option == 6) themHoKhauMoi(phuong.dsHoKhau);
-        else if (option == 7) themThanhVien(phuong.dsHoKhau);
-        else if (option == 8) xoaThanhVien(phuong.dsHoKhau);
-        else if (option == 9) xoaHoKhau(phuong.dsHoKhau);
+        else if (option == 6)
+        {
+            cout << "\nChuc Nang Them Ho Khau : " << endl;
+            themHoKhauMoi(phuong.dsHoKhau);
+        }
+        else if (option == 7) 
+        {
+            cout << "\nChuc Nang Them Thanh Vien : " << endl;
+            int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
+            themThanhVien(phuong.dsHoKhau,chiSoHoKhau);
+        }
+        else if (option == 8) 
+        {
+            cout << "\nChuc Nang Xoa Thanh Vien :" << endl;
+            int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
+            int chiSoThanhVien = timThanhVien_chiSo(phuong.dsHoKhau.ds[chiSoHoKhau]);
+            xoaThanhVien(phuong.dsHoKhau,chiSoHoKhau,chiSoThanhVien);
+        }
+        else if (option == 9) 
+        {
+            cout << "\nChuc Nang Xoa Ho Khau" << endl;
+            int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
+            dongGachNgang();
+            dongTieuDe();
+            xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
+            dongGachNgang();
+            xoaHoKhau(phuong.dsHoKhau, chiSoHoKhau); 
+        }
 
         else if (option == 0) break;
     }
