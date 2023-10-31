@@ -19,7 +19,9 @@ struct ThanhVien
 
 struct HoKhau
 {
-	char info[20];
+	int maHoKhau;
+	char tenChuHo[20];
+	char diaChi[20];
 	int n=0;
 	ThanhVien ds[MAX];
 };
@@ -29,7 +31,7 @@ struct DSHoKhau {
 };
 struct Phuong
 {
-	char info[20];
+	char tenPhuong[20];
 	DSHoKhau dsHoKhau;
 };
 void nhapThanhVien(ThanhVien& thanhvien);
@@ -58,9 +60,8 @@ void xoaHoKhau(DSHoKhau& dsHoKhau);
 void hienThiThongTinHKTimKiem(DSHoKhau dsHoKhau);
 
 
-// file 
 
-bool xuatFile(Phuong& phuong);
-bool docFile();
 
-//
+//tool
+void dongGachNgang();
+void dongTieuDe();
