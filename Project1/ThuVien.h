@@ -16,14 +16,17 @@ struct ThanhVien
 	char queQuan[30];
 	bool gioiTinh;
 };
-
+struct DSThanhVien {
+	int n = 0;
+	ThanhVien ds[MAX];
+};
 struct HoKhau
 {
 	int maHoKhau;
 	char tenChuHo[20];
 	char diaChi[20];
-	int n=0;
-	ThanhVien ds[MAX];
+	DSThanhVien dsThanhVien;
+	
 };
 struct DSHoKhau {
 	int n=0;
@@ -34,9 +37,11 @@ struct Phuong
 	char tenPhuong[20];
 	DSHoKhau dsHoKhau;
 };
+
 void nhapThanhVien(ThanhVien& thanhvien);
 void xuatThanhVien(ThanhVien thanhvien);
 
+void nhapDSThanhVien(DSThanhVien& dsThanhVien);
 void nhapHoKhau(HoKhau& hoKhau);
 void xuatHoKhau(HoKhau hoKhau);
 
@@ -58,9 +63,12 @@ void xoaThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau, int chiSoThanhVien);
 void xoaHoKhau(DSHoKhau& dsHoKhau, int chiSoHoKhau);
 
 
+// validate 
 
+bool ktTenChuHoTrung(HoKhau hoKhau, char chuoi[20]);
 
 
 //tool
 void dongGachNgang();
 void dongTieuDe();
+

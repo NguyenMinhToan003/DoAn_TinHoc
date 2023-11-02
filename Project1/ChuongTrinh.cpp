@@ -66,11 +66,15 @@ int main() {
         {
             cout << "\nChuc Nang Xoa Ho Khau" << endl;
             int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
-            dongGachNgang();
-            dongTieuDe();
-            xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
-            dongGachNgang();
-            xoaHoKhau(phuong.dsHoKhau, chiSoHoKhau); 
+            if (chiSoHoKhau != -1) {
+                dongGachNgang();
+                dongTieuDe();
+                xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
+                dongGachNgang();
+                xoaHoKhau(phuong.dsHoKhau, chiSoHoKhau);
+            }
+            else cout << "\nHo Khau Khong ton tai! ";
+            
         }
 
         else if (option == 0) break;
