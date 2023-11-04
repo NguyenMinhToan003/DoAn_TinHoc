@@ -203,3 +203,73 @@ void dongTieuDe() {
         << left << setw(11) << "Gioi Tinh" << "|"
         << left << setw(24) << "Que Quan" << "|";
 }
+
+void docDSThanhVienTuFile(istream& file, DSThanhVien& dsThanhVien) {
+    file >> dsThanhVien.n;
+
+    for (int i = 0; i < dsThanhVien.n; i++) {
+        file >> dsThanhVien.ds[i].id;
+        file.ignore();
+        file.getline(dsThanhVien.ds[i].hoTen, 30);
+        file >> dsThanhVien.ds[i].namSinh;
+        file.ignore();
+        file.getline(dsThanhVien.ds[i].queQuan, 30);
+        file >> dsThanhVien.ds[i].gioiTinh;
+        file.ignore();
+    }
+}
+void docHoKhauTuFile(istream& file, HoKhau& hoKhau) {
+    file >> hoKhau.maHoKhau;
+    file.ignore();
+    file.getline(hoKhau.tenChuHo, 20);
+    file.getline(hoKhau.diaChi, 20);
+    docDSThanhVienTuFile(file, hoKhau.dsThanhVien);
+}
+void docPhuongTuFile(const char* File, Phuong& phuong) {
+    ifstream file(File);
+    if (!file) {
+        cout << "Loi khi mo file." << endl;
+        return;
+    }
+
+    file.getline(phuong.tenPhuong, 20);
+
+    file >> phuong.dsHoKhau.n;
+
+    for (int i = 0; i < phuong.dsHoKhau.n; i++) {
+        docHoKhauTuFile(file, phuong.dsHoKhau.ds[i]);
+    }
+
+    file.close();
+}
+
+void ghiHoKhauVaoFile(ostream& file, const HoKhau& hoKhau) {
+    file << hoKhau.maHoKhau << endl;
+    file << hoKhau.tenChuHo << endl;
+    file << hoKhau.diaChi << endl;
+    file << hoKhau.dsThanhVien.n << endl;
+
+    for (int i = 0; i < hoKhau.dsThanhVien.n; i++) {
+        file << hoKhau.dsThanhVien.ds[i].id << endl;
+        file << hoKhau.dsThanhVien.ds[i].hoTen << endl;
+        file << hoKhau.dsThanhVien.ds[i].namSinh << endl;
+        file << hoKhau.dsThanhVien.ds[i].queQuan << endl;
+        file << hoKhau.dsThanhVien.ds[i].gioiTinh << endl;
+    }
+}
+void ghiPhuongVaoFile(const char* File, const Phuong& phuong) {
+    ofstream file(File);
+    if (!file) {
+        cout << "Lỗi khi mở file." << endl;
+        return;
+    }
+
+    file << phuong.tenPhuong << endl;
+    file << phuong.dsHoKhau.n << endl;
+
+    for (int i = 0; i < phuong.dsHoKhau.n; i++) {
+        ghiHoKhauVaoFile(file, phuong.dsHoKhau.ds[i]);
+    }
+
+    file.close();
+}

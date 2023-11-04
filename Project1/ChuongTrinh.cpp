@@ -6,7 +6,7 @@ int main() {
     Phuong phuong;
     int option = 1;
     
-
+   
 
     while (option) {
         cout << "\n1.Tao Phuong. ";
@@ -18,6 +18,8 @@ int main() {
         cout << "\n7.Them Thanh Vien.";
         cout << "\n8.Xoa Thanh Vien. ";
         cout << "\n9.Xoa Ho Khau.";
+        cout << "\n10.Mo file.";
+        cout << "\n11.Ghi file.";
         cout << "\n0.Dung Chuong Trinh.";
 
         cout << "\nNhap Lua Chon : ";
@@ -76,7 +78,14 @@ int main() {
             else cout << "\nHo Khau Khong ton tai! ";
             
         }
-
+        else if (option == 10)
+        {
+            docPhuongTuFile("Phuong.txt", phuong);
+        }
+        else if (option==11)
+        {
+            ghiPhuongVaoFile("PhuongMoi.txt", phuong);
+        }
         else if (option == 0) break;
     }
   

@@ -1,0 +1,16 @@
+Phuong 1
+1
+12345
+Nguyen Toai
+1056 huynh
+2
+2222
+Nguyen Toan
+2003
+Dak Lak
+1
+3333
+Nguyen Loan
+2003
+Dak Lak
+0

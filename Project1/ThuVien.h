@@ -72,3 +72,9 @@ bool ktTenChuHoTrung(HoKhau hoKhau, char chuoi[20]);
 void dongGachNgang();
 void dongTieuDe();
 
+void docPhuongTuFile(const char* tenFile, Phuong& phuong);
+void docHoKhauTuFile(istream& file, HoKhau& hoKhau);
+void docDSThanhVienTuFile(istream& file, DSThanhVien& dsThanhVien);
+
+void ghiPhuongVaoFile(const char* File, const Phuong& phuong);
+void ghiHoKhauVaoFile(ostream& file, const HoKhau& hoKhau);
