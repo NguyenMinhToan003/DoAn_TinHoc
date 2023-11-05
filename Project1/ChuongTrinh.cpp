@@ -84,7 +84,7 @@ int main() {
         }
         else if (option==11)
         {
-            ghiPhuongVaoFile("PhuongMoi.txt", phuong);
+            ghiPhuongVaoFile("Phuong.txt", phuong);
         }
         else if (option == 0) break;
     }
