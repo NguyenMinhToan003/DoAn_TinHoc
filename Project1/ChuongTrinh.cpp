@@ -43,7 +43,6 @@ int main() {
                 dongTieuDe();
                 xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
                 dongGachNgang();
-
             }
         }
         else if (option == 6)

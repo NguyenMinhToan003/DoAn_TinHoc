@@ -122,6 +122,13 @@ int timHoKhau_chiSo(DSHoKhau& dsHoKhau) {
     }
     return -1;
 }
+int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau, char ten[20]) {
+    for (int i = 0; i < hoKhau.dsThanhVien.n; i++) {
+        if (strcmp(ten, hoKhau.dsThanhVien.ds[i].hoTen))
+            return i;
+    }
+    return -1;
+}
 
 void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau) {
     
@@ -158,10 +165,14 @@ void xoaThanhVien(DSHoKhau& dsHoKhau,int chiSoHoKhau, int chiSoThanhVien) {
             xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
             dongGachNgang();
             if (ktTenChuHoTrung(dsHoKhau.ds[chiSoHoKhau], dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[chiSoThanhVien].hoTen)&& dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n>1) {
-                cout << "\nNhap Id Nguoi Chu Ho Khau Moi : ";
-                int id;
-                cin >> id;
-                strcpy(dsHoKhau.ds[chiSoHoKhau].tenChuHo, dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[id].hoTen);
+                int idChuMoi;
+                int chiSoChuCu = timChuHoKhauTheoTen_chiSo(dsHoKhau.ds[chiSoHoKhau], dsHoKhau.ds[chiSoHoKhau].tenChuHo);
+                int idChuCu = dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[chiSoChuCu].id;
+                do {
+                    cout << "\nNhap Id Nguoi Chu Ho Khau Moi : ";
+                    cin >> idChuMoi;
+                } while (idChuCu != idChuMoi);
+                strcpy(dsHoKhau.ds[chiSoHoKhau].tenChuHo, dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[idChuMoi].hoTen);
             }
             for (int i = chiSoThanhVien; i < soLuongThanhVien; i++) {
                 dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[i] = dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[i + 1];
@@ -178,12 +189,10 @@ void xoaHoKhau(DSHoKhau& dsHoKhau,int chiSoHoKhau) {
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
-
         for (int i = chiSoHoKhau; i < dsHoKhau.n; i++) {
             dsHoKhau.ds[i] = dsHoKhau.ds[i + 1];
         }
         dsHoKhau.n--;
-    
     }
 }
 
