@@ -124,7 +124,7 @@ int timHoKhau_chiSo(DSHoKhau& dsHoKhau) {
 }
 int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau, char ten[20]) {
     for (int i = 0; i < hoKhau.dsThanhVien.n; i++) {
-        if (strcmp(ten, hoKhau.dsThanhVien.ds[i].hoTen))
+        if (!strcmp(ten, hoKhau.dsThanhVien.ds[i].hoTen))
             return i;
     }
     return -1;
@@ -150,28 +150,32 @@ void themHoKhauMoi(DSHoKhau& dsHoKhau) {
     nhapHoKhau(dsHoKhau.ds[dsHoKhau.n]);
     dsHoKhau.n++;
 }
+bool ktIdThanhVien_HoKhau(HoKhau hoKhau, int id) {
+    for (int i = 0; i < hoKhau.dsThanhVien.n; i++)
+        if (id == hoKhau.dsThanhVien.ds[i].id)
+            return true;
+    return false;
+}
+
 
 void xoaThanhVien(DSHoKhau& dsHoKhau,int chiSoHoKhau, int chiSoThanhVien) {
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
-        
         int soLuongThanhVien = dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n;
         if (chiSoThanhVien == -1)
             cout << "Thanh Vien Khong ton tai !" << endl;
         else {
-            dongGachNgang();
-            dongTieuDe();
-            xuatHoKhau(dsHoKhau.ds[chiSoHoKhau]);
-            dongGachNgang();
+           
             if (ktTenChuHoTrung(dsHoKhau.ds[chiSoHoKhau], dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[chiSoThanhVien].hoTen)&& dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n>1) {
                 int idChuMoi;
                 int chiSoChuCu = timChuHoKhauTheoTen_chiSo(dsHoKhau.ds[chiSoHoKhau], dsHoKhau.ds[chiSoHoKhau].tenChuHo);
                 int idChuCu = dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[chiSoChuCu].id;
+                cout << "id chu cu " << idChuCu;
                 do {
                     cout << "\nNhap Id Nguoi Chu Ho Khau Moi : ";
                     cin >> idChuMoi;
-                } while (idChuCu != idChuMoi);
+                } while (idChuCu == idChuMoi || !ktIdThanhVien_HoKhau(dsHoKhau.ds[chiSoHoKhau], idChuMoi));
                 strcpy(dsHoKhau.ds[chiSoHoKhau].tenChuHo, dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[idChuMoi].hoTen);
             }
             for (int i = chiSoThanhVien; i < soLuongThanhVien; i++) {
@@ -189,6 +193,7 @@ void xoaHoKhau(DSHoKhau& dsHoKhau,int chiSoHoKhau) {
     if (chiSoHoKhau == -1)
         cout << "\nHo Khau Khong ton tai !" << endl;
     else {
+
         for (int i = chiSoHoKhau; i < dsHoKhau.n; i++) {
             dsHoKhau.ds[i] = dsHoKhau.ds[i + 1];
         }

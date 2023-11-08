@@ -56,6 +56,7 @@ void xuatTTPhuong(Phuong phuong);
 int timThanhVien_chiSo(HoKhau& hoKhau);
 int timHoKhau_chiSo(DSHoKhau& dsHoKhau);
 int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau,char ten[20]);
+bool ktIdThanhVien_HoKhau(HoKhau hoKhau, int id);
 
 void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKha);
 void themHoKhauMoi(DSHoKhau& dsHoKhau);

@@ -60,8 +60,15 @@ int main() {
         {
             cout << "\nChuc Nang Xoa Thanh Vien :" << endl;
             int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
+            dongGachNgang();
+            dongTieuDe();
+            xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
+            dongGachNgang();
             int chiSoThanhVien = timThanhVien_chiSo(phuong.dsHoKhau.ds[chiSoHoKhau]);
-            xoaThanhVien(phuong.dsHoKhau,chiSoHoKhau,chiSoThanhVien);
+            if (chiSoHoKhau != -1) {
+                xoaThanhVien(phuong.dsHoKhau, chiSoHoKhau, chiSoThanhVien);
+            }
+           
         }
         else if (option == 9) 
         {
@@ -87,7 +94,5 @@ int main() {
         }
         else if (option == 0) break;
     }
-  
     return 0;
-
 }
