@@ -6,7 +6,7 @@
 #include <string>
 
 
-const int MAX = 50;
+const int MAX = 30;
 using namespace std;
 struct ThanhVien
 {
@@ -53,10 +53,10 @@ void xuatPhuong(Phuong phuong);
 void nhapTTPhuong(Phuong& phuong);
 void xuatTTPhuong(Phuong phuong);
 
-int timThanhVien_chiSo(HoKhau& hoKhau);
-int timHoKhau_chiSo(DSHoKhau& dsHoKhau);
-int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau,char ten[20]);
-bool ktIdThanhVien_HoKhau(HoKhau hoKhau, int id);
+int timThanhVien_chiSo(HoKhau hoKhau,int id);
+int timHoKhau_chiSo(DSHoKhau dsHoKhau);
+int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau);
+
 
 void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKha);
 void themHoKhauMoi(DSHoKhau& dsHoKhau);
@@ -68,7 +68,7 @@ void xoaHoKhau(DSHoKhau& dsHoKhau, int chiSoHoKhau);
 // validate 
 
 bool ktTenChuHoTrung(HoKhau hoKhau, char chuoi[20]);
-
+bool ktIdCoTrongHoKhau(HoKhau hoKhau, int id);
 
 //tool
 void dongGachNgang();

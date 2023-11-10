@@ -64,7 +64,10 @@ int main() {
             dongTieuDe();
             xuatHoKhau(phuong.dsHoKhau.ds[chiSoHoKhau]);
             dongGachNgang();
-            int chiSoThanhVien = timThanhVien_chiSo(phuong.dsHoKhau.ds[chiSoHoKhau]);
+            int idSearch;
+            cout << "\nNhap Id Thanh Vien : ";
+            cin >> idSearch;
+            int chiSoThanhVien = timThanhVien_chiSo(phuong.dsHoKhau.ds[chiSoHoKhau],idSearch);
             if (chiSoHoKhau != -1) {
                 xoaThanhVien(phuong.dsHoKhau, chiSoHoKhau, chiSoThanhVien);
             }
