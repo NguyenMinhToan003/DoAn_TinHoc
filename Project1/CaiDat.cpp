@@ -202,6 +202,7 @@ void dongGachNgang() {
     for (int i = 0; i < 133; i++) {
         cout << "-";
     }
+    cout <<endl;
 }
 void dongTieuDe() {
     cout << "|"
@@ -213,6 +214,7 @@ void dongTieuDe() {
         << left << setw(10) << "Nam Sinh" << "|"
         << left << setw(11) << "Gioi Tinh" << "|"
         << left << setw(24) << "Que Quan" << "|";
+       cout <<endl;
 }
 
 void docDSThanhVienTuFile(istream& file, DSThanhVien& dsThanhVien) {
