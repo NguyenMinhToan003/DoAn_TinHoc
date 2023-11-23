@@ -12,7 +12,7 @@ int main() {
         cout << "\n1.Tao Phuong. ";
         cout << "\n2.Quan Ly Phuong.";
         cout << "\n3.Nhap Thong Tin Phuong. ";
-        cout << "\n4.Xuat Thong Tin Phuong. ";
+        cout << "\n4.Tim Thong Tin Cong Dan. ";
         cout << "\n5.Tim Thong Tin Ho Khau.";
         cout << "\n6.Them Ho Khau Moi.";
         cout << "\n7.Them Thanh Vien.";
@@ -26,14 +26,19 @@ int main() {
         cin >> option;
         system("cls");
 
-        if (option == 1) 
+        if (option == 1)
             nhapPhuong(phuong);
         else if (option == 2)
             xuatPhuong(phuong);
-        else if (option == 3) 
+        else if (option == 3)
             nhapTTPhuong(phuong);
-        else if (option == 4) 
-            xuatTTPhuong(phuong);
+        else if (option == 4)
+        {
+            int id;
+            cout << "\nNhap CCCD Can Tim : ";
+            cin >> id;
+            timThanhVien(phuong.dsHoKhau, id);
+        }
         else if (option == 5) {
             int chiSoHoKhau = timHoKhau_chiSo(phuong.dsHoKhau);
             if (chiSoHoKhau == -1)
@@ -90,6 +95,7 @@ int main() {
         else if (option == 10)
         {
             docPhuongTuFile("Phuong.txt", phuong);
+            xuatPhuong(phuong);
         }
         else if (option==11)
         {

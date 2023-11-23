@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <random>
 
 
 const int MAX = 30;
@@ -56,6 +57,7 @@ void xuatTTPhuong(Phuong phuong);
 int timThanhVien_chiSo(HoKhau hoKhau,int id);
 int timHoKhau_chiSo(DSHoKhau dsHoKhau);
 int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau);
+void timThanhVien(DSHoKhau dsHoKhau, int id);
 
 
 void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKha);
@@ -80,3 +82,12 @@ void docDSThanhVienTuFile(istream& file, DSThanhVien& dsThanhVien);
 
 void ghiPhuongVaoFile(const char* File, const Phuong& phuong);
 void ghiHoKhauVaoFile(ostream& file, const HoKhau& hoKhau);
+
+
+
+//sort
+void sapXepTheoTen(DSHoKhau& dsHoKhau);
+void sapXepTheoTenThanhVien(DSThanhVien& dsThanhVien);
+
+// automatic ma
+int taoSoNgauNhien();

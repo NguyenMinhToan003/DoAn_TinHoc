@@ -2,38 +2,43 @@ Phuong 2
 3
 0
 Nguyen Van A
-TP Ho Chi Minh
-1
-0
+DakLak
+2
+2002
 Nguyen Van A
 2000
-Ha Noi 
+DakLak
+1
+3863
+Nguyen Van S
+2001
+DakLak
 1
 1
-Nguyen Thi B
-Ha Noi 
-3
-0
-Nguyen Thi B
-2000
-Ninh Binh 
-0
-1
-Nguyen Van D
-1000
-Ha Noi 
-1
+Nguyen Thi F
+HaNoi
 2
-Nguyen Thi S
-1991
-Ha Giang 
-0
-3
-Nguyen Van Them 
-Da Nang 
+2230
+Nguyen A
+1900
+HaNoi
 1
+2468
+Nguyen Thi F
+2003
+HaNoi
 0
-Nguyen Van Them 
-2011
-Da Nang
+2
+Tran Van H
+HCM
+2
+1207
+Tran Thi B
+1990
+HCM
+0
+3967
+Tran Van H 
+1982
+HCM
 1

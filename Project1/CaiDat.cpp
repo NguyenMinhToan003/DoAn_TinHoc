@@ -2,6 +2,7 @@
 
 
 void nhapThanhVien(ThanhVien& thanhvien) {
+    thanhvien.id = taoSoNgauNhien();
     cout << "\nNhap ho va ten: ";
     cin.ignore();
     cin.getline(thanhvien.hoTen, 30);
@@ -22,6 +23,8 @@ void xuatThanhVien(ThanhVien thanhvien) {
         << right << setw(10) << thanhvien.namSinh << "|"
         << left << setw(11) << (thanhvien.gioiTinh ? "Nam" : "Nu") << "|"
         << left << setw(24) << thanhvien.queQuan << "|" << endl;
+
+
 }
 
 
@@ -29,10 +32,10 @@ void nhapDSThanhVien(DSThanhVien& dsThanhVien) {
     cout << "\nNhap so luong thanh vien : ";
     cin >> dsThanhVien.n;
     for (int i = 0; i < dsThanhVien.n; i++) {
-        dsThanhVien.ds[i].id = i;
         cout << "\nNhap Thanh Vien thu " << i + 1 << endl;
         nhapThanhVien(dsThanhVien.ds[i]);
     }
+    sapXepTheoTenThanhVien(dsThanhVien);
 }
 
 bool ktTenChuHoTrung(HoKhau hoKhau, char chuoi[20]) {
@@ -47,9 +50,9 @@ void nhapHoKhau(HoKhau& hoKhau) {
     cout << "\nNhap Dia Chi Ho Khau : ";
     cin.getline(hoKhau.diaChi, 20);
     nhapDSThanhVien(hoKhau.dsThanhVien);
-   
 }
 void xuatHoKhau(HoKhau hoKhau) {
+    sapXepTheoTenThanhVien(hoKhau.dsThanhVien);
     for (int i = 0; i < hoKhau.dsThanhVien.n; i++) {
         dongGachNgang();
         cout << "|"
@@ -101,10 +104,10 @@ void xuatPhuong(Phuong phuong) {
     cout << "\n\t\t\t\t\t\t\tQUAN LY DAN CU CUA PHUONG " << endl;
     xuatTTPhuong(phuong);
     xuatDSHoKhau(phuong.dsHoKhau);
+    
 }
 
 int timThanhVien_chiSo(HoKhau hoKhau,int id) {
-
     for (int i = 0; i < hoKhau.dsThanhVien.n; i++) {
         if (hoKhau.dsThanhVien.ds[i].id == id) return i;
     }
@@ -127,9 +130,30 @@ int timChuHoKhauTheoTen_chiSo(HoKhau hoKhau) {
     }
     return -1;
 }
+void timThanhVien(DSHoKhau dsHoKhau, int id) {
+    for (int i = 0; i < dsHoKhau.n; i++) {
+        for (int j = 0; j < dsHoKhau.ds[i].dsThanhVien.n; j++) {
+            if (id == dsHoKhau.ds[i].dsThanhVien.ds[j].id)
+            {
+                dongGachNgang();
+                dongTieuDe();
+                dongGachNgang();
+                cout << "|"
+                    << right << setw(5) << dsHoKhau.ds[i].maHoKhau << "|"
+                    << left << setw(22) << dsHoKhau.ds[i].tenChuHo << "|"
+                    << left << setw(22) << dsHoKhau.ds[i].diaChi ;
+                xuatThanhVien(dsHoKhau.ds[i].dsThanhVien.ds[j]);
+                dongGachNgang();
+                return;
+            }
+
+        }
+
+    }
+    cout << "\nKhong Tim Thay " << endl;
+}
 
 void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau) {
-    
     if (chiSoHoKhau == -1)
         cout << "Ho Khau Khong ton tai !" << endl;
     else {
@@ -140,13 +164,14 @@ void themThanhVien(DSHoKhau& dsHoKhau, int chiSoHoKhau) {
         dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n].id = dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n-1].id+1;
         nhapThanhVien(dsHoKhau.ds[chiSoHoKhau].dsThanhVien.ds[dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n]);
         dsHoKhau.ds[chiSoHoKhau].dsThanhVien.n++;
+        sapXepTheoTenThanhVien(dsHoKhau.ds[chiSoHoKhau].dsThanhVien);
     }
 }
 
 void themHoKhauMoi(DSHoKhau& dsHoKhau) {
-    dsHoKhau.ds[dsHoKhau.n].maHoKhau = dsHoKhau.n;
     nhapHoKhau(dsHoKhau.ds[dsHoKhau.n]);
-    dsHoKhau.n++;
+    dsHoKhau.ds[dsHoKhau.n].maHoKhau = dsHoKhau.n;
+    dsHoKhau.n++;  
 }
 bool ktIdCoTrongHoKhau(HoKhau hoKhau, int id) {
     for (int i = 0; i < hoKhau.dsThanhVien.n; i++)
@@ -195,6 +220,7 @@ void xoaHoKhau(DSHoKhau& dsHoKhau,int chiSoHoKhau) {
             dsHoKhau.ds[i] = dsHoKhau.ds[i + 1];
         }
         dsHoKhau.n--;
+        sapXepTheoTen(dsHoKhau);
     }
 }
 
@@ -219,7 +245,6 @@ void dongTieuDe() {
 
 void docDSThanhVienTuFile(istream& file, DSThanhVien& dsThanhVien) {
     file >> dsThanhVien.n;
-
     for (int i = 0; i < dsThanhVien.n; i++) {
         file >> dsThanhVien.ds[i].id;
         file.ignore();
@@ -285,4 +310,39 @@ void ghiPhuongVaoFile(const char* File, const Phuong& phuong) {
     }
 
     file.close();
+}
+
+void sapXepTheoTen(DSHoKhau& dsHoKhau) {
+    for (int i = 0; i < dsHoKhau.n; ++i) {
+        for (int j = 0; j < dsHoKhau.ds[i].dsThanhVien.n - 1; ++j) {
+            for (int k = 0; k < dsHoKhau.ds[i].dsThanhVien.n - j - 1; ++k) {
+                if (strcmp(dsHoKhau.ds[i].dsThanhVien.ds[k].hoTen, dsHoKhau.ds[i].dsThanhVien.ds[k + 1].hoTen) > 0) {
+                    // Hoán đổi vị trí nếu cần
+                    ThanhVien temp = dsHoKhau.ds[i].dsThanhVien.ds[k];
+                    dsHoKhau.ds[i].dsThanhVien.ds[k] = dsHoKhau.ds[i].dsThanhVien.ds[k + 1];
+                    dsHoKhau.ds[i].dsThanhVien.ds[k + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+void sapXepTheoTenThanhVien(DSThanhVien& dsThanhVien) {
+    for (int i = 0; i < dsThanhVien.n - 1; i++) {
+        for (int j = i; j < dsThanhVien.n ; j++) {
+            if (strcmp(dsThanhVien.ds[j].hoTen, dsThanhVien.ds[j + 1].hoTen) > 0) {
+                ThanhVien temp = dsThanhVien.ds[j];
+                dsThanhVien.ds[j] = dsThanhVien.ds[j + 1];
+                dsThanhVien.ds[j + 1] = temp;
+            }
+        }
+    }
+}
+
+
+int taoSoNgauNhien() {
+   random_device rd;
+   mt19937 gen(rd());
+   uniform_int_distribution<> dis(1000, 9999);
+   return dis(gen);
 }
