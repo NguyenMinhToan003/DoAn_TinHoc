@@ -312,21 +312,6 @@ void ghiPhuongVaoFile(const char* File, const Phuong& phuong) {
     file.close();
 }
 
-void sapXepTheoTen(DSHoKhau& dsHoKhau) {
-    for (int i = 0; i < dsHoKhau.n; ++i) {
-        for (int j = 0; j < dsHoKhau.ds[i].dsThanhVien.n - 1; ++j) {
-            for (int k = 0; k < dsHoKhau.ds[i].dsThanhVien.n - j - 1; ++k) {
-                if (strcmp(dsHoKhau.ds[i].dsThanhVien.ds[k].hoTen, dsHoKhau.ds[i].dsThanhVien.ds[k + 1].hoTen) > 0) {
-                    // Hoán đổi vị trí nếu cần
-                    ThanhVien temp = dsHoKhau.ds[i].dsThanhVien.ds[k];
-                    dsHoKhau.ds[i].dsThanhVien.ds[k] = dsHoKhau.ds[i].dsThanhVien.ds[k + 1];
-                    dsHoKhau.ds[i].dsThanhVien.ds[k + 1] = temp;
-                }
-            }
-        }
-    }
-}
-
 void sapXepTheoTenThanhVien(DSThanhVien& dsThanhVien) {
     for (int i = 0; i < dsThanhVien.n - 1; i++) {
         for (int j = i; j < dsThanhVien.n ; j++) {
